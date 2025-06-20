@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Æonix Digital - Soluções Inteligentes</title>
+    <meta name="description" content="Portal de modelos de sites desenvolvidos pela Æonix Digital.">
+    <meta name="author" content="Æonix Digital">
+    <meta name="theme-color" content="#0F172A">
+    <meta http-equiv="Cache-Control" content="max-age=86400">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos gerais com cores do tema dark */
+        :root {
+            --dark-bg: #0F172A; /* Fundo principal escuro */
+            --dark-secondary-bg: #1E293B; /* Fundo secundário mais claro */
+            --dark-text: #E2E8F0; /* Texto principal claro */
+            --dark-secondary-text: #CBD5E1; /* Texto secundário mais claro */
+            --primary-accent: #64CCC9; /* Cor primária de destaque (mantida) */
+            --secondary-accent: #8EE4AF; /* Cor secundária de destaque (mantida) */
+            --error-color: #EF4444; /* Vermelho para erros (mantido) */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--dark-secondary-bg);
+            color: var(--dark-text);
+            padding: 1.5em 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada */
+            border-bottom: 1px solid #334155; /* Linha de separação */
+        }
+
+        /* INÍCIO - ESTILOS ESPECÍFICOS PARA O LOGO COM GRADIENTE */
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            letter-spacing: 1px;
+            /* Para aplicar o gradiente no texto, usamos as seguintes propriedades: */
+            background-image: linear-gradient(to right, #8A2BE2, #00FF7F); /* Cores roxo e verde. ALTERE AQUI PARA MUDAR AS CORES DO GRADIENTE. */
+            -webkit-background-clip: text; /* Faz o fundo (gradiente) ser cortado para o formato do texto. */
+            color: transparent; /* Torna a cor do texto transparente para que o gradiente do fundo seja visível. */
+            display: inline-block; /* Necessário para que o background-clip funcione corretamente. */
+        }
+        /* FIM - ESTILOS ESPECÍFICOS PARA O LOGO COM GRADIENTE */
+
+        .social-top {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-top a {
+            color: var(--dark-secondary-text);
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        .social-top a:hover {
+            color: var(--primary-accent);
+        }
+
+        nav a {
+            color: var(--dark-secondary-text);
+            text-decoration: none;
+            margin-left: 2em;
+            font-weight: 500;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary-accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: var(--dark-text);
+            font-size: 1.8em;
+            cursor: pointer;
+            display: none;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        main {
+            padding: 40px 20px;
+        }
+
+        .content {
+            background-color: var(--dark-secondary-bg);
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4); /* Sombra mais escura */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #334155; /* Adicionando uma borda sutil */
+        }
+
+        .content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Sombra mais intensa no hover */
+        }
+
+        .content h1,
+        .content h2 {
+            color: var(--primary-accent);
+            margin-bottom: 20px;
+            position: relative;
+            text-align: center;
+        }
+
+        .content h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--dark-text); /* Texto "O que você procura?" em branco */
+        }
+
+        .content h1::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-accent);
+        }
+
+        .content h2 {
+            font-size: 2em;
+        }
+
+        .content h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-accent);
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: var(--primary-accent);
+        }
+
+        .esgotado {
+            color: var(--error-color);
+            font-weight: 600;
+        }
+
+        footer {
+            background-color: var(--dark-secondary-bg);
+            color: var(--dark-text);
+            padding: 50px 0 20px;
+            text-align: center;
+            border-top: 1px solid #334155; /* Linha de separação */
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .footer-logo .logo {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: block;
+            /* Os estilos de gradiente para o logo do topo não se aplicam aqui para evitar repetição.
+               Se desejar um estilo diferente no footer, adicione aqui. */
+        }
+
+        .footer-logo p {
+            color: var(--dark-secondary-text);
+            font-size: 0.95em;
+        }
+
+        .footer-links h3,
+        .footer-social h3 {
+            margin-bottom: 20px;
+            color: var(--primary-accent);
+            font-size: 1.3em;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li a {
+            color: var(--dark-secondary-text);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--primary-accent);
+            padding-left: 5px;
+        }
+
+        .footer-social {
+            text-align: center; /* Centralizando os links de redes sociais no footer */
+        }
+
+        .footer-social a {
+            color: var(--dark-secondary-text);
+            text-decoration: none;
+            margin: 5px 10px; /* Espaçamento entre os links */
+            font-size: 1.2em;
+            transition: color 0.3s ease, border-color 0.3s ease;
+            display: inline-block; /* Para centralizar horizontalmente */
+            padding: 10px 15px;
+            border: 1px solid var(--dark-secondary-text);
+            border-radius: 5px;
+        }
+
+        .footer-social a:hover {
+            color: var(--primary-accent);
+            border-color: var(--primary-accent);
+        }
+
+        .copyright {
+            margin-top: 40px;
+            padding: 20px 20px 0;
+            border-top: 1px solid #334155;
+            color: var(--dark-secondary-text);
+            font-size: 0.9em;
+            text-align: center; /* Centralizando o copyright */
+        }
+
+        /* Estilos para os botões centrais */
+        .central-buttons-container {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .central-buttons-container ul {
+            list-style: none;
+            padding-left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .central-buttons-container ul li {
+            margin-bottom: 25px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .central-buttons-container ul li a {
+            display: inline-block;
+            padding: 18px 35px;
+            background-color: var(--primary-accent);
+            color: var(--dark-bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2em;
+            box-shadow: 0 4px 15px rgba(100, 204, 201, 0.5); /* Ajustando a cor da sombra */
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 100%;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            text-align: center; /* Centralizando o texto dentro do botão */
+        }
+
+        .central-buttons-container ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent); /* Brilho mais sutil */
+            transition: 0.5s;
+        }
+
+        .central-buttons-container ul li a:hover {
+            background-color: var(--secondary-accent);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(142, 228, 175, 0.6); /* Ajustando a cor da sombra */
+            color: var(--dark-bg); /* Mantendo o contraste */
+        }
+
+        .central-buttons-container ul li a:hover::before {
+            left: 100%;
+        }
+
+        /* Estilos para o botão "Ver Portfólio Completo" */
+        .portfolio-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--dark-secondary-bg); /* Mantendo o fundo escuro */
+            color: var(--primary-accent); /* Cor do texto mais clara */
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border: 1px solid var(--primary-accent); /* Adicionando uma borda para melhor definição */
+        }
+
+        .portfolio-btn:hover {
+            background-color: var(--primary-accent);
+            color: var(--dark-bg);
+        }
+
+        /* Estilos para o botão do WhatsApp */
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: 600;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.5); /* Sombra mais escura */
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128c7e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6); /* Sombra mais intensa */
+        }
+
+        /* Media query para telas menores */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .social-top {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 15px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-secondary-bg);
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Sombra mais escura */
+                display: none;
+                z-index: 999;
+                border-top: 1px solid #334155; /* Adicionando separação */
+            }
+
+            nav.active {
+                display: block;
+                animation: fadeIn 0.3s ease;
+            }
+
+            nav a {
+                display: block;
+                margin: 1em 0;
+                padding: 10px;
+                border-bottom: 1px solid #334155; /* Usando uma cor mais clara para a borda do menu */
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .content h1 {
+                font-size: 2em;
+            }
+
+            .content h2 {
+                font-size: 1.7em;
+            }
+
+            .central-buttons-container ul li a {
+                padding: 15px 25px;
+                font-size: 1.1em;
+            }
+
+            .whatsapp-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+<body>
+    <header>
+        <div class="logo">Æonix Digital</div>
+        <nav>
+            <a href="#contato">Contato</a>
+            <a href="#modelos">Modelos</a>
+            <a href="#portfolio">Portfólio</a>
+        </nav>
+        <div class="social-top">
+            <a href="https://instagram.com/aeonixdigital_oficial" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com/company/aeonixdigital" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://wa.me/5511999999999" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+    </header>
+
+    <main class="container">
+        <section class="content" id="modelos">
+            <h1>O que você procura?</h1>
+            <div class="central-buttons-container">
+                <ul>
+                    <li><a href="#contato" class="automacao-btn"><i class="fas fa-robot"></i> Solicitar Automação</a></li>
+                    <li><a href="vitrine-whatsapp/"><i class="fas fa-mobile-alt"></i> Site Vitrine com WhatsApp</a></li>
+                    <li><a href="carrinho-whatsapp/"><i class="fas fa-shopping-cart"></i> Carrinho com WhatsApp</a></li>
+                    <li><a href="loja-completa/"><i class="fas fa-store"></i> Loja Completa com Checkout</a></li>
+                    <li class="esgotado"><i class="fas fa-times-circle"></i> Pacote Avançado (Esgotado)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content" id="portfolio">
+            <h2>Nosso Portfólio</h2>
+            <p style="color: var(--dark-secondary-text); text-align: center;">Conheça alguns dos nossos trabalhos recentes e cases de sucesso.</p>
+            <div style="text-align: center;">
+                <a href="portfolio.html" class="portfolio-btn"><i class="fas fa-images"></i> Ver Portfólio Completo</a>
+            </div>
+        </section>
+
+        <section class="content" id="contato">
+            <h2>Contato</h2>
+            <p style="color: var(--dark-secondary-text); text-align: center;">Entre em contato para solicitar uma solução personalizada.</p>
+            <p style="text-align: center;">
+                <a href="https://wa.me/5511999999999" class="highlight"><i class="fab fa-whatsapp"></i> Fale com um consultor</a>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <span class="logo">Æonix Digital</span>
+                    <p style="color: var(--dark-secondary-text);">Soluções inteligentes para o seu negócio crescer.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="#modelos">Modelos</a></li>
+                        <li><a href="#portfolio">Portfólio</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Redes Sociais</h3>
+                    <a href="https://wa.me/5511999999999" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><br>
+                    <a href="https://instagram.com/aeonixdigital_oficial" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><br>
+                    <a href="https://linkedin.com/company/aeonixdigital" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© <span id="current-year"></span> Æonix Digital. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5511999999999" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            const isExpanded = nav.classList.contains('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+            menuToggle.textContent = isExpanded ? '✕' : '☰';
+        });
+
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.textContent = '☰';
+                }
+            });
+        });
+
+        const currentYearSpan = document.getElementById('current-year');
+        if (currentYearSpan) {
+            currentYearSpan.textContent = new Date().getFullYear();
+        }
+
+        // Efeito de scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
