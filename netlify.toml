@@ -1,0 +1,5 @@
+[build]
+  # Pasta que contém os arquivos para deploy
+  publish = "."
+  # Comando de build (vazio pois é um site estático)
+  command = ""
