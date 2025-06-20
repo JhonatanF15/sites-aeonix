@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Æonix Digital - Soluções Inteligentes</title>
+  <meta name="description" content="Æonix Digital - Soluções com inteligência artificial, automação e painéis inteligentes para negócios.">
+  <meta name="author" content="Æonix Digital">
+  <meta name="theme-color" content="#00ffcc">
+  <meta http-equiv="Cache-Control" content="max-age=86400">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">Æonix Digital</div>
+    <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+    <nav>
+      <a href="#services">Serviços</a>
+      <a href="#contact">Contato</a>
+      <a href="#" class="highlight" id="version-link">Versão E-commerce</a>
+    </nav>
+  </header>
+  <main class="container">
+    <section class="content">
+      </section>
+  </main>
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-logo">
+          <span class="logo">Æonix Digital</span>
+          <p>Soluções inteligentes para o seu negócio crescer.</p>
+        </div>
+        <div class="footer-links">
+          <h3>Links Rápidos</h3>
+          <ul>
+            <li><a href="#services">Serviços</a></li>
+            <li><a href="#contact">Contato</a></li>
+            <li><a href="#">Política de Privacidade</a></li>
+            <li><a href="#" id="version-switcher">Versão E-commerce</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h3>Redes Sociais</h3>
+          <a href="https://wa.me/5511999999999" target="_blank">WhatsApp</a>
+          <a href="https://instagram.com/aeonixdigital_oficial" target="_blank">Instagram</a>
+          <a href="https://linkedin.com/company/aeonixdigital" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© <span id="current-year"></span> Æonix Digital. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+  <a href="https://wa.me/5511999999999" class="whatsapp-btn" target="_blank">WhatsApp</a>
+  <script src="assets/js/script.js"></script>
+  <script>
+    // Toggle do menu mobile
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      const isExpanded = nav.classList.contains('active');
+      menuToggle.setAttribute('aria-expanded', isExpanded);
+      menuToggle.textContent = isExpanded ? '✕' : '☰';
+    });
+    // Fechar menu ao clicar em um link
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (nav.classList.contains('active')) {
+          nav.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.textContent = '☰';
+        }
+      });
+    });
+    // Alertas para versão futura
+    const versionLink = document.getElementById('version-link');
+    if (versionLink) {
+      versionLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        alert('A versão E-commerce completa estará disponível em breve!');
+      });
+    }
+    const versionSwitcher = document.getElementById('version-switcher');
+    if (versionSwitcher) {
+      versionSwitcher.addEventListener('click', function (e) {
+        e.preventDefault();
+        alert('A versão E-commerce completa estará disponível em breve!');
+      });
+    }
+    // Atualizar ano no rodapé
+    const currentYearSpan = document.getElementById('current-year');
+    if (currentYearSpan) {
+      currentYearSpan.textContent = new Date().getFullYear();
+    }
+  </script>
+</body>
+</html>

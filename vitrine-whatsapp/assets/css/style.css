@@ -1,0 +1,516 @@
+/*
+  Arquivo: style.css
+  Descrição: Estilos para o site vitrine da Æonix Digital.
+*/
+
+/* -------------------- Variáveis de Cores e Bordas -------------------- */
+:root {
+  --color-primary: #00ffcc; /* Cor primária (destaque) */
+  --color-dark: #0a192f;    /* Cor de fundo escura */
+  --color-dark-card: #112240; /* Cor de fundo dos cards */
+  --color-light: #e6f1ff;   /* Cor de texto clara */
+  --color-medium-light: #ccd6f6; /* Cor de texto clara média */
+  --color-muted-light: #8892b0; /* Cor de texto clara suave */
+  --color-red: #dc3545;     /* Cor vermelha (para status de esgotado) */
+  --color-green: #28a745;   /* Cor verde */
+  --border-radius: 8px;     /* Raio dos cantos */
+}
+
+/* -------------------- Reset Básico e Transições -------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease; /* Adiciona transições suaves a todas as propriedades */
+}
+
+/* -------------------- Estilos do Body -------------------- */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--color-light); /* Cor do texto padrão */
+  background-color: var(--color-dark); /* Cor de fundo padrão */
+  line-height: 1.6; /* Espaçamento entre linhas padrão */
+}
+
+/* -------------------- Container Principal -------------------- */
+.container {
+  max-width: 1200px; /* Largura máxima do conteúdo */
+  margin: 0 auto; /* Centraliza o conteúdo na tela */
+  padding: 0 20px; /* Espaçamento nas laterais */
+}
+
+/* -------------------- Texto de Destaque -------------------- */
+.highlight {
+  color: var(--color-primary); /* Cor de destaque */
+}
+
+/* -------------------- Cabeçalho (Header) -------------------- */
+header {
+  position: fixed; /* Fixa o cabeçalho no topo da tela */
+  top: 0;
+  width: 100%;
+  padding: 20px;
+  background: rgba(10, 25, 47, 0.9); /* Fundo semi-transparente */
+  backdrop-filter: blur(5px); /* Efeito de desfoque no fundo */
+  z-index: 1000; /* Garante que o cabeçalho fique acima de outros elementos */
+  display: flex;
+  justify-content: space-between; /* Espaça o logo e a navegação */
+  align-items: center; /* Alinha verticalmente os itens */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Sombra suave */
+  border-bottom: 1px solid rgba(0, 255, 204, 0.1); /* Borda inferior sutil */
+}
+
+/* -------------------- Logo -------------------- */
+.logo {
+  font-size: 1.8em;
+  font-weight: 700;
+  letter-spacing: 1px;
+  /* Para aplicar o gradiente no texto, usamos as seguintes propriedades: */
+  background-image: linear-gradient(to right, #8A2BE2, #00FF7F); /* Cores roxo e verde. ALTERE AQUI PARA MUDAR AS CORES DO GRADIENTE. */
+  -webkit-background-clip: text; /* Faz o fundo (gradiente) ser cortado para o formato do texto. */
+  color: transparent; /* Torna a cor do texto transparente para que o gradiente do fundo seja visível. */
+  display: inline-block; /* Necessário para que o background-clip funcione corretamente. */
+}
+
+/* -------------------- Botão de Menu (Mobile) -------------------- */
+.menu-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none; /* Escondido por padrão em telas maiores */
+}
+
+/* -------------------- Navegação (Nav) -------------------- */
+nav {
+  display: flex;
+  gap: 20px; /* Espaçamento entre os links */
+}
+
+/* -------------------- Links da Navegação -------------------- */
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* -------------------- Hover nos Links da Navegação -------------------- */
+nav a:hover {
+  color: var(--color-primary); /* Cor ao passar o mouse */
+}
+
+/* -------------------- Conteúdo Principal (Main) -------------------- */
+main {
+  padding: 100px 20px 40px; /* Espaçamento superior para não ficar atrás do header fixo */
+  min-height: calc(100vh - 160px); /* Garante altura mínima para o conteúdo */
+}
+
+/* -------------------- Seções (Section) -------------------- */
+section {
+  margin-bottom: 60px; /* Espaçamento entre as seções */
+}
+
+/* -------------------- Títulos das Seções (h2) -------------------- */
+h2 {
+  color: var(--color-primary);
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+  text-align: center; /* Centraliza os títulos */
+}
+
+/* -------------------- Rodapé (Footer) -------------------- */
+footer {
+  background: rgba(10, 25, 47, 0.9);
+  padding: 40px 0 20px;
+  border-top: 1px solid rgba(0, 255, 204, 0.1);
+}
+
+/* -------------------- Grid do Rodapé -------------------- */
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Cria colunas responsivas */
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+/* -------------------- Logo no Rodapé -------------------- */
+.footer-logo .logo {
+  font-size: 1.2rem;
+}
+
+/* -------------------- Descrição do Logo no Rodapé -------------------- */
+.footer-logo p {
+  color: var(--color-muted-light);
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+/* -------------------- Títulos das Listas e Redes Sociais no Rodapé -------------------- */
+.footer-links h3, .footer-social h3 {
+  color: var(--color-medium-light);
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+/* -------------------- Listas de Links no Rodapé -------------------- */
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* -------------------- Links nas Listas e Redes Sociais no Rodapé -------------------- */
+.footer-links a,
+.footer-social a {
+  color: var(--color-light);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.95em;
+}
+
+/* -------------------- Hover nos Links do Rodapé -------------------- */
+.footer-links a:hover,
+.footer-social a:hover {
+  color: var(--color-primary);
+}
+
+/* -------------------- Copyright -------------------- */
+.copyright {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+  color: var(--color-muted-light);
+}
+
+/* -------------------- BOTÃO WHATSAPP AUTÊNTICO -------------------- */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25d366;
+  color: white;
+  padding: 12px 20px 12px 16px;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+/* -------------------- Hover no Botão WhatsApp -------------------- */
+.whatsapp-btn:hover {
+  background: #128C7E;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* -------------------- Ícone do WhatsApp no Botão -------------------- */
+.whatsapp-btn::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>');
+  background-size: contain;
+}
+
+/* -------------------- Estilos do Formulário de Contato -------------------- */
+form input,
+form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(0, 255, 204, 0.2);
+  border-radius: var(--border-radius);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  font-family: inherit;
+  font-size: 1em;
+}
+
+/* -------------------- Placeholder do Formulário -------------------- */
+form input::placeholder,
+form textarea::placeholder {
+  color: var(--color-muted-light);
+}
+
+/* -------------------- Botão de Envio do Formulário -------------------- */
+form button {
+  background: var(--color-primary);
+  color: var(--color-dark);
+  padding: 12px 25px;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1em;
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 10px auto 0;
+}
+
+/* -------------------- Hover no Botão de Envio do Formulário -------------------- */
+form button:hover {
+  filter: brightness(1.1);
+}
+
+/* -------------------- Texto Abaixo do Formulário de Contato -------------------- */
+#contact p {
+  margin-top: 20px;
+  text-align: center;
+  color: var(--color-medium-light);
+}
+
+/* -------------------- Container dos Pacotes (Cards) -------------------- */
+.pacotes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px 0;
+}
+
+/* -------------------- Card (Contêiner Individual do Pacote) -------------------- */
+.card {
+  background-color: var(--color-dark-card);
+  border-radius: var(--border-radius);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 255, 204, 0.1);
+}
+
+/* -------------------- Hover no Card -------------------- */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(0, 255, 204, 0.3);
+}
+
+/* -------------------- Cabeçalho do Card -------------------- */
+.card-header {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--color-primary);
+  padding: 18px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 255, 204, 0.1);
+}
+
+/* -------------------- Título do Card (h2) -------------------- */
+.card-header h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: var(--color-light);
+  text-align: center;
+}
+
+/* -------------------- Corpo do Card -------------------- */
+.card-body {
+  padding: 25px;
+  flex-grow: 1; /* Faz o corpo do card crescer para ocupar o espaço restante */
+  color: var(--color-medium-light);
+}
+
+/* -------------------- Lista de Itens no Corpo do Card -------------------- */
+.card-body ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+/* -------------------- Item da Lista no Corpo do Card -------------------- */
+.card-body li {
+  margin-bottom: 10px;
+  font-size: 0.95em;
+  border-left: 3px solid var(--color-primary); /* Barra lateral de destaque */
+  padding-left: 10px;
+  color: var(--color-medium-light);
+}
+
+/* -------------------- Texto em Negrito nos Itens da Lista do Card -------------------- */
+.card-body li strong {
+  color: var(--color-light);
+  font-weight: 600;
+}
+
+/* -------------------- Texto de Foco no Corpo do Card -------------------- */
+.foco {
+  font-size: 0.9em;
+  color: var(--color-muted-light);
+  margin-top: 20px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+}
+
+/* -------------------- Texto em Negrito no Foco do Card -------------------- */
+.foco strong {
+  color: var(--color-medium-light);
+}
+
+/* -------------------- Rodapé do Card -------------------- */
+.card-footer {
+  padding: 20px 25px;
+  background-color: rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border-top: 1px solid rgba(0, 255, 204, 0.1);
+  margin-top: auto; /* Empurra o rodapé para baixo do card */
+}
+
+/* -------------------- Estilos para Card Disponível -------------------- */
+.card.disponivel .card-header {
+  background-color: rgba(0, 255, 204, 0.1);
+  border-bottom-color: rgba(0, 255, 204, 0.3);
+}
+
+/* -------------------- Título do Card Disponível -------------------- */
+.card.disponivel .card-header h2 {
+  color: var(--color-primary);
+}
+
+/* -------------------- Lista de Itens do Card Disponível -------------------- */
+.card.disponivel .card-body li {
+  border-left-color: var(--color-primary);
+}
+
+/* -------------------- Botão de Ação (Contratar Agora) -------------------- */
+.cta-button {
+  background: var(--color-primary);
+  color: var(--color-dark);
+  border: none;
+  padding: 12px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  font-weight: 700;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  transition: filter 0.3s ease;
+}
+
+/* -------------------- Hover no Botão de Ação -------------------- */
+.cta-button:hover {
+  filter: brightness(1.15);
+}
+
+/* -------------------- Status de Disponível -------------------- */
+.status-disponivel {
+  color: var(--color-primary);
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 5px;
+}
+
+/* -------------------- Estilos para Card Esgotado -------------------- */
+.card.esgotado {
+  opacity: 0.6;
+  border-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(17, 34, 64, 0.7);
+}
+
+/* -------------------- Hover no Card Esgotado -------------------- */
+.card.esgotado:hover {
+  transform: none;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* -------------------- Cabeçalho do Card Esgotado -------------------- */
+.card.esgotado .card-header {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+/* -------------------- Título do Card Esgotado -------------------- */
+.card.esgotado .card-header h2 {
+  color: var(--color-muted-light);
+}
+
+/* -------------------- Lista de Itens do Card Esgotado -------------------- */
+.card.esgotado .card-body li {
+  border-left-color: var(--color-muted-light);
+  color: var(--color-muted-light);
+}
+
+/* -------------------- Texto em Negrito nos Itens da Lista do Card Esgotado -------------------- */
+.card.esgotado .card-body li strong {
+  color: var(--color-medium-light);
+}
+
+/* -------------------- Status de Esgotado -------------------- */
+.status-esgotado {
+  color: var(--color-red);
+  font-weight: bold;
+  text-align: center;
+}
+
+/* -------------------- Texto "Esgotado" -------------------- */
+.status-esgotado span {
+  display: block;
+  font-size: 1.2em;
+}
+
+/* -------------------- Texto "Devido à alta demanda" -------------------- */
+.status-esgotado small {
+  display: block;
+  font-size: 0.8em;
+  color: var(--color-muted-light);
+  margin-top: 3px;
+}
+
+/* -------------------- Media Queries (Responsividade) -------------------- */
+@media (max-width: 768px) {
+  /* Estilos para telas menores que 768px de largura */
+  .menu-toggle {
+    display: block; /* Mostra o botão de menu */
+  }
+  nav {
+    display: none; /* Esconde a navegação em telas pequenas */
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: var(--color-dark);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    flex-direction: column;
+    width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  }
+  nav.active {
+    display: flex; /* Mostra a navegação quando a classe 'active' é adicionada */
+  }
+  nav a {
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+  }
+  .pacotes-container {
+    gap: 20px;
+  }
+  .card {
+    width: 90%;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Estilos para telas menores que 480px de largura */
+  h2 { font-size: 1.6rem; }
+  .card { width: 95%; }
+  .card-header h2 { font-size: 1.3em; }
+  .card-body, .card-footer { padding: 20px; }
+  .cta-button { font-size: 0.95em; }
+  .whatsapp-btn { padding: 10px 15px; font-size: 0.9em; }
+  .whatsapp-btn::before { width: 20px; height: 20px; }
+}
