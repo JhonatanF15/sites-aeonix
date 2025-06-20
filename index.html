@@ -55,7 +55,8 @@
             letter-spacing: 1px;
             /* Para aplicar o gradiente no texto, usamos as seguintes propriedades: */
             background-image: linear-gradient(to right, #8A2BE2, #00FF7F); /* Cores roxo e verde. ALTERE AQUI PARA MUDAR AS CORES DO GRADIENTE. */
-            -webkit-background-clip: text; /* Faz o fundo (gradiente) ser cortado para o formato do texto. */
+            -webkit-background-clip: text; /* Para navegadores baseados em WebKit/Blink */
+            background-clip: text; /* Propriedade padrão */
             color: transparent; /* Torna a cor do texto transparente para que o gradiente do fundo seja visível. */
             display: inline-block; /* Necessário para que o background-clip funcione corretamente. */
         }
