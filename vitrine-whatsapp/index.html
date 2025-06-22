@@ -39,7 +39,7 @@
           </div>
           <div class="card-footer">
             <p class="status-disponivel">Disponível!</p>
-            <button class="cta-button">Contratar Agora</button>
+            <a href="https://wa.me/5541987456598?text=Tenho%20interesse%20no%20Pacote%20Inicial" class="cta-button" target="_blank">Contratar Agora</a>
           </div>
         </div>
         <div class="card esgotado">
@@ -84,18 +84,15 @@
     </section>
     <section id="contact">
       <h2>Contato</h2>
-      <form action="https://formsubmit.co/contato@aeonixdigital.com.br" method="POST">
-        <input type="hidden" name="_subject" value="Novo Contato via Site Æonix Digital!">
-        <input type="text" name="name" placeholder="Seu nome" required>
-        <input type="email" name="email" placeholder="Seu e-mail" required>
-        <textarea name="message" placeholder="Sua mensagem" rows="5" required></textarea>
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://SEU_SITE.com/obrigado.html">
+      <form id="whatsappForm" onsubmit="sendToWhatsApp(event)">
+        <input type="text" id="name" placeholder="Seu nome" required>
+        <input type="email" id="email" placeholder="Seu e-mail" required>
+        <textarea id="message" placeholder="Sua mensagem" rows="5" required></textarea>
         <button type="submit">Enviar Mensagem</button>
       </form>
       <p>Ou entre em contato direto através de nossos canais:</p>
-      <p>Email: contato@aeonixdigital.com.br</p>
-      <p>WhatsApp: (11) 99999-9999</p>
+      <p>Email: aeonixdigital@gmail.com</p>
+      <p>WhatsApp: (41) 98745-6598</p>
     </section>
     </main>
   <footer>
@@ -116,19 +113,37 @@
         </div>
         <div class="footer-social">
           <h3>Redes Sociais</h3>
-          <a href="https://wa.me/5511999999999" target="_blank">WhatsApp</a>
-          <a href="https://instagram.com/aeonixdigital_oficial" target="_blank">Instagram</a>
-          <a href="https://linkedin.com/company/aeonixdigital" target="_blank">LinkedIn</a>
+          <a href="https://wa.me/5541987456598" target="_blank">WhatsApp</a>
+          <a href="https://www.linkedin.com/in/jhonatan-oliveira-6b5639276" target="_blank">Instagram</a>
+          <a href="https://www.linkedin.com/in/jhonatan-oliveira-6b5639276" target="_blank">LinkedIn</a>
         </div>
       </div>
       <div class="copyright">
-        <p>© <span id="current-year"></span> Æonix Digital. Todos os direitos reservados.</p>
+        <p> 2023 Æonix Digital. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
-  <a href="https://wa.me/5511999999999" class="whatsapp-btn" target="_blank">WhatsApp</a>
+  <a href="https://wa.me/5541987456598" class="whatsapp-btn" target="_blank">WhatsApp</a>
 
   <script>
+    // Função para enviar para o WhatsApp
+    function sendToWhatsApp(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      // Formata a mensagem
+      const text = `Olá! Me chamo ${name}. ${message}%0A%0AEmail para contato: ${email}`;
+      
+      // Redireciona para o WhatsApp com a mensagem formatada
+      window.open(`https://wa.me/5541987456598?text=${text}`, '_blank');
+      
+      // Limpa o formulário
+      document.getElementById('whatsappForm').reset();
+    }
+
     // Toggle do menu mobile
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('nav');
