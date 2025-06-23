@@ -67,7 +67,8 @@ header {
   letter-spacing: 1px;
   /* Para aplicar o gradiente no texto, usamos as seguintes propriedades: */
   background-image: linear-gradient(to right, #8A2BE2, #00FF7F); /* Cores roxo e verde. ALTERE AQUI PARA MUDAR AS CORES DO GRADIENTE. */
-  -webkit-background-clip: text; /* Faz o fundo (gradiente) ser cortado para o formato do texto. */
+  -webkit-background-clip: text; /* Prefixo para compatibilidade com navegadores WebKit */
+  background-clip: text; /* Propriedade padrão */
   color: transparent; /* Torna a cor do texto transparente para que o gradiente do fundo seja visível. */
   display: inline-block; /* Necessário para que o background-clip funcione corretamente. */
 }
@@ -268,32 +269,52 @@ form button:hover {
   color: var(--color-medium-light);
 }
 
-/* -------------------- Container dos Pacotes (Cards) -------------------- */
+/* -------------------- Estilo dos Cards -------------------- */
 .pacotes-container {
   display: flex;
   flex-wrap: wrap;
+  gap: 2rem;
   justify-content: center;
-  gap: 30px;
-  padding: 20px 0;
+  margin: 2rem auto;
+  max-width: 1400px;
+  padding: 0 20px;
 }
 
-/* -------------------- Card (Contêiner Individual do Pacote) -------------------- */
 .card {
-  background-color: var(--color-dark-card);
-  border-radius: var(--border-radius);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  flex: 1 1 300px;
+  background: #1a1a2e;
+  border-radius: 15px;
   overflow: hidden;
-  width: 320px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(0, 255, 204, 0.1);
+  max-width: 350px;
 }
 
-/* -------------------- Hover no Card -------------------- */
+/* Garante que os cards tenham a mesma altura */
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-footer {
+  margin-top: auto;
+}
+
+/* Hover no Card */
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  border-color: rgba(0, 255, 204, 0.3);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+  .card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
 }
 
 /* -------------------- Cabeçalho do Card -------------------- */
@@ -453,6 +474,198 @@ form button:hover {
   color: var(--color-red);
   font-weight: bold;
   text-align: center;
+}
+
+/* -------------------- Oferta Temporária -------------------- */
+.oferta-temporada {
+  background: linear-gradient(135deg, #00b4d8, #0077b6);
+  color: white;
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 116, 217, 0.2);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.oferta-temporada::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 10% 20%, rgba(0, 180, 216, 0.1) 0%, rgba(0, 119, 182, 0.3) 100%);
+  z-index: -1;
+  opacity: 0.5;
+}
+
+.oferta-titulo h2 {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 600;
+}
+
+.badge-oferta {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.oferta-descricao {
+  font-size: 1.1rem;
+  margin: 0.5rem 0 1.5rem;
+  opacity: 0.9;
+}
+
+.contador-oferta {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.tempo {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem 0.8rem;
+  border-radius: 8px;
+  min-width: 80px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tempo span:first-child {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #fff, #e6f1ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tempo span:last-child {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+/* Efeitos para quando o tempo estiver acabando */
+.oferta-temporada.urgente {
+  animation: pulse 2s infinite, shake 0.5s infinite;
+  background: linear-gradient(135deg, #ff6b6b, #ff4d4d);
+}
+
+.oferta-temporada.urgente::before {
+  background: radial-gradient(circle at 10% 20%, rgba(255, 107, 107, 0.2) 0%, rgba(255, 77, 77, 0.4) 100%);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.01); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+/* Estilos para preços com desconto */
+.preco-original {
+  text-decoration: line-through;
+  opacity: 0.7;
+  font-size: 1em;
+  margin-right: 8px;
+  display: inline-block;
+}
+
+.preco-com-desconto {
+  color: var(--color-primary) !important;
+  font-weight: 700 !important;
+  font-size: 1.1em !important;
+  margin-right: 8px;
+  display: inline-block;
+}
+
+.badge-desconto {
+  background: #ff4757;
+  color: white !important;
+  font-size: 0.8em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+/* Ajustes para os itens de lista com preços */
+.card-body li {
+  position: relative;
+  padding-right: 10px;
+}
+
+.preco-desconto {
+  color: var(--color-primary) !important;
+  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.tempo-esgotado {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  padding: 1rem 0;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .contador-oferta {
+    gap: 0.8rem;
+  }
+  
+  .tempo {
+    min-width: 70px;
+    padding: 0.8rem 0.5rem;
+  }
+  
+  .tempo span:first-child {
+    font-size: 1.8rem;
+  }
+  
+  .oferta-titulo h2 {
+    font-size: 1.3rem;
+  }
+  
+  .oferta-descricao {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
 }
 
 /* -------------------- Texto "Esgotado" -------------------- */

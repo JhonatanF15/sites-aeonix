@@ -24,6 +24,29 @@
     </header>
   <main>
     <section id="services">
+      <!-- Seção de Oferta Temporária -->
+      <div class="oferta-temporada">
+        <div class="oferta-titulo">
+          <span class="badge-oferta">🔥 Oferta Especial</span>
+          <h2>Desconto por Tempo Limitado!</h2>
+          <p class="oferta-descricao">Aproveite <strong>20% de desconto</strong> em todos os nossos pacotes por tempo limitado!</p>
+        </div>
+        <div class="contador-oferta">
+          <div class="tempo">
+            <span id="horas">00</span>
+            <span>Horas</span>
+          </div>
+          <div class="tempo">
+            <span id="minutos">00</span>
+            <span>Minutos</span>
+          </div>
+          <div class="tempo">
+            <span id="segundos">00</span>
+            <span>Segundos</span>
+          </div>
+        </div>
+      </div>
+      
       <h2>Nossos Pacotes</h2>
       <div class="pacotes-container">
         <div class="card disponivel">
@@ -32,8 +55,8 @@
           </div>
           <div class="card-body">
             <ul>
-              <li><strong>Site Vitrine:</strong> R$ 200 (aprox. 3h)</li>
-              <li><strong>Painel Notion:</strong> R$ 150 (aprox. 2h)</li>
+              <li><strong>Site Vitrine:</strong> R$ 400</li>
+              <li><strong>Painel Notion:</strong> R$ 300</li>
             </ul>
             <p class="foco"><strong>Foco:</strong> Sites simples para exposição de serviços com um painel básico de gestão ou informações.</p>
           </div>
@@ -42,15 +65,33 @@
             <a href="https://wa.me/5541987456598?text=Tenho%20interesse%20no%20Pacote%20Inicial" class="cta-button" target="_blank">Contratar Agora</a>
           </div>
         </div>
+        
+        <div class="card disponivel">
+          <div class="card-header">
+            <h2>Fluxo Inteligente</h2>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li><strong>Integração com CRM:</strong> R$ 560</li>
+              <li><strong>Chatbot Personalizado no WhatsApp:</strong> R$ 840</li>
+              <li><strong>Dashboard Interativo (Notion/Google Sheets):</strong> R$ 380</li>
+            </ul>
+            <p class="foco"><strong>Foco:</strong> Solução completa para empresas que buscam automatizar seu atendimento, personalizar interações e acompanhar resultados em tempo real.</p>
+          </div>
+          <div class="card-footer">
+            <p class="status-disponivel">Disponível!</p>
+            <a href="https://wa.me/5541987456598?text=Tenho%20interesse%20no%20Fluxo%20Inteligente" class="cta-button" target="_blank">Contratar Agora</a>
+          </div>
+        </div>
         <div class="card esgotado">
           <div class="card-header">
             <h2>Pacote Intermediário</h2>
           </div>
           <div class="card-body">
             <ul>
-              <li><strong>Site com Carrinho:</strong> R$ 350 (aprox. 5h)</li>
-              <li><strong>Bot WhatsApp:</strong> R$ 400 (aprox. 6h)</li>
-              <li><strong>Painel Notion:</strong> R$ 150 (aprox. 2h)</li>
+              <li><strong>Site com Carrinho:</strong> R$ 700</li>
+              <li><strong>Bot WhatsApp:</strong> R$ 800</li>
+              <li><strong>Painel Notion:</strong> R$ 300</li>
             </ul>
             <p class="foco"><strong>Foco:</strong> Soluções para quem precisa de um site com funcionalidades de venda e interação através do WhatsApp.</p>
           </div>
@@ -67,9 +108,9 @@
           </div>
           <div class="card-body">
             <ul>
-              <li><strong>Loja com Pagamento:</strong> R$ 800 (aprox. 12h)</li>
-              <li><strong>Bot WhatsApp:</strong> R$ 400 (aprox. 6h)</li>
-              <li><strong>Painel Web:</strong> R$ 500 (aprox. 8h)</li>
+              <li><strong>Loja com Pagamento:</strong> R$ 1.600</li>
+              <li><strong>Bot WhatsApp:</strong> R$ 800</li>
+              <li><strong>Painel Web:</strong> R$ 1.000</li>
             </ul>
             <p class="foco"><strong>Foco:</strong> Para empresas que necessitam de um e-commerce completo, com integração de pagamento e soluções avançadas de automação.</p>
           </div>
@@ -80,6 +121,7 @@
             </div>
           </div>
         </div>
+
         </div>
     </section>
     <section id="contact">
@@ -175,5 +217,6 @@
     // Atualizar ano no rodapé
     document.getElementById('current-year').textContent = new Date().getFullYear();
   </script>
-  </body>
+  <script src="assets/script.js"></script>
+</body>
 </html>
