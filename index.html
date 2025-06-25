@@ -67,9 +67,124 @@
         }
         
         @media (max-width: 768px) {
+            /* 1. Ajustar logo */
             .logo {
-                max-width: 520px;
-                height: 160px;
+                width: auto;
+                height: 150%;
+                max-height: 150px;
+                object-fit: contain;
+                object-position: left center;
+                margin: 0;
+                filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+                transition: transform 0.3s ease;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 10;
+            }
+            
+            /* Efeito ao passar o mouse */
+            .logo:hover {
+                transform: translateY(-50%) scale(1.05);
+                filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
+            }
+
+            /* 2. Ajustar altura do cabeçalho */
+            header {
+                height: 110px;
+                min-height: 110px;
+                padding: 5px 15px 5px 140px;
+                flex-wrap: nowrap;
+                position: relative;
+                align-items: center;
+                box-sizing: border-box;
+                overflow: visible;
+            }
+
+            /* 3. Centralizar itens do header */
+            .nav-center {
+                position: static;
+                order: 3;
+                width: 100%;
+                transform: none;
+                left: auto;
+                background: var(--dark-secondary-bg);
+                margin-top: 10px;
+                padding: 10px 0;
+                display: none; /* Esconder por padrão */
+            }
+
+            /* 4. Mostrar menu quando ativo */
+            nav.active.nav-center {
+                display: block;
+            }
+
+            /* 5. Estilo dos links do menu */
+            nav a {
+                display: block;
+                margin: 10px 15px;
+                padding: 8px 0;
+            }
+
+            /* 6. Ajustar botão do menu */
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 100;
+                font-size: 1.6em;
+                background: none;
+                border: none;
+                color: white;
+                cursor: pointer;
+                padding: 5px;
+            }
+
+            /* 7. Ajustar ícones sociais */
+            .social-top {
+                position: absolute;
+                right: 50%;
+                transform: translateX(50%);
+                margin: 0;
+                padding: 0;
+                display: flex;
+                gap: 8px; /* Reduzido de 12px */
+                align-items: center;
+                height: 100%;
+            }
+            
+            /* Ajustar tamanho dos ícones sociais */
+            .social-top a {
+                width: 28px; /* Reduzido de 36px */
+                height: 28px; /* Reduzido de 36px */
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                text-decoration: none;
+                font-size: 14px; /* Reduzido de 18px */
+                transition: all 0.2s ease;
+            }
+            
+            .social-top a:hover {
+                background: var(--primary-accent);
+                transform: scale(1.1);
+            }
+
+            /* 8. Ajustar espaço para o conteúdo principal */
+            main {
+                padding-top: 15px; /* Reduzido de 20px */
+            }
+
+            /* 9. Ajustar botão flutuante do WhatsApp */
+            .whatsapp-float {
+                bottom: 80px; /* Ajustar conforme necessário */
+                right: 15px;
             }
         }
         /* FIM - ESTILOS ESPECÍFICOS PARA O LOGO COM GRADIENTE */
@@ -590,6 +705,8 @@
                 width: 100%;
                 justify-content: center;
                 margin-top: 15px;
+                padding-left: 10px; /* Ajuste para alinhar com o conteúdo */
+                box-sizing: border-box;
             }
 
             .menu-toggle {
@@ -741,21 +858,48 @@
     <a href="https://wa.me/5541987456598" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
 
     <script>
-        const menuToggle = document.querySelector('.menu-toggle');
-        const nav = document.querySelector('nav');
-        menuToggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            const isExpanded = nav.classList.contains('active');
-            menuToggle.setAttribute('aria-expanded', isExpanded);
-            menuToggle.textContent = isExpanded ? '✕' : '☰';
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+            const body = document.body;
 
-        nav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (nav.classList.contains('active')) {
-                    nav.classList.remove('active');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                    menuToggle.textContent = '☰';
+            // Função para fechar o menu
+            function closeMenu() {
+                nav.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.textContent = '☰';
+                body.style.overflow = ''; // Restaura o scroll
+            }
+
+            // Abrir/fechar menu ao clicar no botão
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isExpanded = nav.classList.toggle('active');
+                menuToggle.setAttribute('aria-expanded', isExpanded);
+                menuToggle.textContent = isExpanded ? '✕' : '☰';
+                
+                // Impedir rolagem da página quando o menu estiver aberto
+                body.style.overflow = isExpanded ? 'hidden' : '';
+            });
+
+            // Fechar menu ao clicar em um link
+            nav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Fechar menu ao clicar fora
+            document.addEventListener('click', (e) => {
+                if (nav.classList.contains('active') && 
+                    !nav.contains(e.target) && 
+                    e.target !== menuToggle) {
+                    closeMenu();
+                }
+            });
+
+            // Fechar menu ao redimensionar a tela para desktop
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    closeMenu();
                 }
             });
         });
